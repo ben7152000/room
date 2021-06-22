@@ -1,10 +1,27 @@
 <template>
-  <div id="app">
-    <div class="btn btn-primary">123</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <h3>房間資料</h3>
+      <hr/>
+      <RoomEdit />
+    </div>
+    <div class="col-9">
+      <h3>房間列表</h3>
+      <hr/>
+      <div class="row">
+        <div class="col-3" v-for="(room,id) in rooms" :key="id">
+          <RoomCard :room="room" :hotelDiscount="hotelDiscount"/>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
+import RoomEdit from '@/components/RoomEdit'
+import RoomCard from '@/components/RoomCard'
 const rooms = [
   {
     name: '精緻客房',
@@ -120,7 +137,17 @@ const rooms = [
   }
 ]
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    RoomEdit,
+    RoomCard
+  },
+  data () {
+    return {
+      rooms: rooms,
+      hotelDiscount: 0.9
+    }
+  }
 }
 </script>
 
