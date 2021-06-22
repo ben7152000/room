@@ -16,8 +16,8 @@
         <h4>房間編輯</h4>
         <div class="btn btn-primary" @click="addRoom">+ 新增房間</div>
         <hr/>
-        <div v-for="(room,id) in rooms" :key="id" class="room-edit">
-          <h4>{{room.name}}</h4>
+        <div v-for="(room, id) in rooms" :key="id" class="room-edit">
+          <h4>{{room.name}}<span class="trash" @click="deleteRoom(id)"><i class="fas fa-trash"></i></span></h4>
           <div class="form-input">
             <label for="roomName" class="label">房間名稱</label>
             <input type="text" id="roomName" class="form-control" v-model="room.name">
@@ -46,7 +46,7 @@
       <hr/>
       <div class="row room-table">
         <div class="col-3" v-for="(room,id) in rooms" :key="id">
-          <RoomCard :room="room" :hotelDiscount="hotelDiscount" :serviceFee="serviceFee"/>
+          <RoomCard :room="room" :hotelDiscount="hotelDiscount" :serviceFee="serviceFee" :deleteRoom="deleteRoom" :id="id"/>
         </div>
       </div>
     </div>
@@ -197,6 +197,9 @@ export default {
           coffee: false
         }
       })
+    },
+    deleteRoom (id) {
+      return this.rooms.splice(id, 1)
     }
   }
 }
@@ -208,6 +211,22 @@ export default {
   height: 100vh;
   overflow-y: scroll;
   padding-bottom: 100px;
+}
+.edit-table {
+  .room-edit {
+    h4 {
+      position: relative;
+      .trash {
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+        transition: .5s;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
 }
 .form-input {
   margin: 10px auto;

@@ -2,7 +2,7 @@
   <div class="card">
     <div class="cover" :style="bgUrl">
       <h3>{{room.name}}</h3>
-      <span class="times"><i class="fas fa-times"></i></span>
+      <span class="times" @click="deleteRoom(id)"><i class="fas fa-times"></i></span>
     </div>
     <div class="info">
       <h4>{{room.eng}}</h4>
@@ -32,6 +32,14 @@ export default {
     serviceFee: {
       type: Number,
       required: true
+    },
+    deleteRoom: {
+      type: Function,
+      required: true
+    },
+    id: {
+      type: Number,
+      required: true
     }
   },
   computed: {
@@ -54,7 +62,6 @@ export default {
 <style lang="scss" scoped>
 .card {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  margin: 20px;
   &:hover{
     .cover {
       background-size: 230% auto;
