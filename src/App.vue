@@ -42,6 +42,14 @@
             <label for="roomCover" class="label">房間連結</label>
             <input type="text" id="roomCover" class="form-control" v-model="room.cover">
           </div>
+          <div class="form-input">
+            <label class="label">房間設備</label>
+            <div class="checkbox">
+              <input type="checkbox" id="coffee" v-model="room.equipment.coffee"><label for="coffee">早餐</label>
+              <input type="checkbox" id="wifi" v-model="room.equipment.wifi"><label for="wifi">Wifi</label>
+              <input type="checkbox" id="bath" v-model="room.equipment.bath"><label for="bath">浴缸</label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
