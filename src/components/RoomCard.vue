@@ -28,6 +28,10 @@ export default {
     hotelDiscount: {
       type: Number,
       required: true
+    },
+    serviceFee: {
+      type: Number,
+      required: true
     }
   },
   computed: {
@@ -38,7 +42,7 @@ export default {
       return parseInt(this.finalDiscount * 100)
     },
     finalPrice () {
-      return parseInt(this.room.price * this.finalDiscount)
+      return parseInt(this.room.price * this.finalDiscount) + 1 * this.serviceFee
     },
     bgUrl () {
       return { 'background-image': "url('" + this.room.cover + "')" }

@@ -1,17 +1,52 @@
 <template>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-3">
+    <div class="col-2">
       <h3>房間資料</h3>
       <hr/>
-      <RoomEdit />
+      <div class="edit-table">
+        <div class="form-input">
+          <label for="discount" class="label">折價</label>
+          <input type="text" id="discount" class="form-control" v-model="hotelDiscount">
+        </div>
+        <div class="form-input">
+          <label for="serviceFee" class="label">服務費</label>
+          <input type="text" id="serviceFee" class="form-control" v-model="serviceFee">
+        </div>
+        <h4>房間編輯</h4>
+        <div class="btn btn-primary">+ 新增房間</div>
+        <hr/>
+        <div v-for="(room,id) in rooms" :key="id" class="room-edit">
+          <h4>{{room.name}}</h4>
+          <div class="form-input">
+            <label for="roomName" class="label">房間名稱</label>
+            <input type="text" id="roomName" class="form-control" v-model="room.name">
+          </div>
+          <div class="form-input">
+            <label for="roomEng" class="label">英文名稱</label>
+            <input type="text" id="roomEng" class="form-control" v-model="room.eng">
+          </div>
+          <div class="form-input">
+            <label for="roomPrice" class="label">房間價格</label>
+            <input type="text" id="roomPrice" class="form-control" v-model="room.price">
+          </div>
+          <div class="form-input">
+            <label for="roomDiscount" class="label">房間折扣</label>
+            <input type="text" id="roomDiscount" class="form-control" v-model="room.discount">
+          </div>
+          <div class="form-input">
+            <label for="roomCover" class="label">房間連結</label>
+            <input type="text" id="roomCover" class="form-control" v-model="room.cover">
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-9">
+    <div class="col-10">
       <h3>房間列表</h3>
       <hr/>
-      <div class="row">
+      <div class="row room-table">
         <div class="col-3" v-for="(room,id) in rooms" :key="id">
-          <RoomCard :room="room" :hotelDiscount="hotelDiscount"/>
+          <RoomCard :room="room" :hotelDiscount="hotelDiscount" :serviceFee="serviceFee"/>
         </div>
       </div>
     </div>
@@ -20,7 +55,6 @@
 </template>
 
 <script>
-import RoomEdit from '@/components/RoomEdit'
 import RoomCard from '@/components/RoomCard'
 const rooms = [
   {
@@ -33,7 +67,7 @@ const rooms = [
     discount: 0.9,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   },
@@ -47,7 +81,7 @@ const rooms = [
     discount: 0.8,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   },
@@ -61,7 +95,7 @@ const rooms = [
     discount: 0.9,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   },
@@ -75,7 +109,7 @@ const rooms = [
     discount: 0.9,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   },
@@ -89,7 +123,7 @@ const rooms = [
     discount: 0.9,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   },
@@ -103,7 +137,7 @@ const rooms = [
     discount: 0.9,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   },
@@ -117,7 +151,7 @@ const rooms = [
     discount: 0.9,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   },
@@ -131,7 +165,7 @@ const rooms = [
     discount: 0.9,
     equipment: {
       wifi: true,
-      bathtub: true,
+      bath: true,
       coffee: true
     }
   }
@@ -139,17 +173,30 @@ const rooms = [
 export default {
   name: 'App',
   components: {
-    RoomEdit,
     RoomCard
   },
   data () {
     return {
       rooms: rooms,
-      hotelDiscount: 0.9
+      hotelDiscount: 0.9,
+      serviceFee: 200
     }
   }
 }
 </script>
 
 <style lang="scss">
+.edit-table,
+.room-table {
+  height: 100vh;
+  overflow-y: scroll;
+  padding-bottom: 100px;
+}
+.form-input {
+  margin: 10px auto;
+  .label {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
 </style>
