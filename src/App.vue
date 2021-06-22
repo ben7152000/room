@@ -20,8 +20,8 @@
         <br/>
         <div class="btn btn-primary" @click="addRoom">+ 新增房間</div>
         <hr/>
-        <div v-for="(room, id) in rooms" :key="id" class="room-edit">
-          <h4>{{room.name}}<span class="trash" @click="deleteRoom(id)"><i class="fas fa-trash"></i></span></h4>
+        <div v-for="(room, id) in [rooms[editId]]" :key="id" class="room-edit">
+          <h4>{{room.name}}<span class="trash" @click="deleteRoom(editId)"><i class="fas fa-trash"></i></span></h4>
           <div class="form-input">
             <label for="roomName" class="label">房間名稱</label>
             <input type="text" id="roomName" class="form-control" v-model="room.name">
@@ -205,6 +205,7 @@ export default {
       this.editId = this.rooms.length - 1
     },
     deleteRoom (id) {
+      console.log(id)
       this.rooms.splice(id, 1)
     }
   }
@@ -212,7 +213,6 @@ export default {
 </script>
 
 <style lang="scss">
-.edit-table,
 .room-table {
   height: 100vh;
   overflow-y: scroll;
