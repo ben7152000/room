@@ -14,7 +14,7 @@
           <input type="text" id="serviceFee" class="form-control" v-model="serviceFee">
         </div>
         <h4>房間編輯</h4>
-        <div class="btn btn-primary">+ 新增房間</div>
+        <div class="btn btn-primary" @click="addRoom">+ 新增房間</div>
         <hr/>
         <div v-for="(room,id) in rooms" :key="id" class="room-edit">
           <h4>{{room.name}}</h4>
@@ -180,6 +180,23 @@ export default {
       rooms: rooms,
       hotelDiscount: 0.9,
       serviceFee: 200
+    }
+  },
+  methods: {
+    addRoom () {
+      return this.rooms.push({
+        name: '新房間',
+        eng: 'New Room',
+        price: 0,
+        amount: 0,
+        cover: '',
+        discount: 0,
+        equipment: {
+          wifi: false,
+          bath: false,
+          coffee: false
+        }
+      })
     }
   }
 }
