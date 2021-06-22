@@ -14,6 +14,10 @@
           <input type="text" id="serviceFee" class="form-control" v-model="serviceFee">
         </div>
         <h4>房間編輯</h4>
+        <select class='form-control form-select' v-model="editId">
+          <option v-for="(room, id) in rooms" :value="id" :key="id">{{room.name}}</option>
+        </select>
+        <br/>
         <div class="btn btn-primary" @click="addRoom">+ 新增房間</div>
         <hr/>
         <div v-for="(room, id) in rooms" :key="id" class="room-edit">
@@ -179,12 +183,13 @@ export default {
     return {
       rooms: rooms,
       hotelDiscount: 0.9,
-      serviceFee: 200
+      serviceFee: 200,
+      editId: 0
     }
   },
   methods: {
     addRoom () {
-      return this.rooms.push({
+      this.rooms.push({
         name: '新房間',
         eng: 'New Room',
         price: 0,
@@ -197,9 +202,10 @@ export default {
           coffee: false
         }
       })
+      this.editId = this.rooms.length - 1
     },
     deleteRoom (id) {
-      return this.rooms.splice(id, 1)
+      this.rooms.splice(id, 1)
     }
   }
 }
@@ -213,6 +219,7 @@ export default {
   padding-bottom: 100px;
 }
 .edit-table {
+  padding-right: 10px;
   .room-edit {
     h4 {
       position: relative;
