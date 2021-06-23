@@ -8,9 +8,9 @@
       <h4>{{room.eng}}</h4>
       <h5>{{finalDiscountShow}} 折</h5>
       <div class="icons">
-        <span><i class="fas fa-coffee"></i></span>
-        <span><i class="fas fa-wifi"></i></span>
-        <span><i class="fas fa-bath"></i></span>
+        <span v-if="room.equipment.coffee"><i class="fas fa-coffee"></i></span>
+        <span v-if="room.equipment.wifi"><i class="fas fa-wifi"></i></span>
+        <span v-if="room.equipment.bath"><i class="fas fa-bath"></i></span>
       </div>
       <h4>TWD <s>{{room.price}}</s> <span class="final-price">{{finalPrice}}</span></h4>
     </div>
@@ -64,7 +64,7 @@ export default {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   &:hover{
     .cover {
-      background-size: 230% auto;
+      background-size: auto 110%;
     }
   }
   .cover{
@@ -72,7 +72,7 @@ export default {
     position: relative;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 210% auto;
+    background-size: auto 100%;
     transition: .5s;
     h3 {
       position: absolute;
