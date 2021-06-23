@@ -3,7 +3,7 @@
   <div class="popup-inner">
     <slot/>
     <button class="btn btn-secondary close" @click="closeEdit">
-      close popup
+      close
     </button>
   </div>
 </div>
