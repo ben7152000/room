@@ -64,7 +64,7 @@ export default {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   &:hover{
     .cover {
-      background-size: 230% auto;
+      background-size: auto 110%;
     }
   }
   .cover{
@@ -72,7 +72,7 @@ export default {
     position: relative;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 210% auto;
+    background-size: auto 100%;
     transition: .5s;
     h3 {
       position: absolute;
